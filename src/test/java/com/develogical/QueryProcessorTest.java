@@ -46,4 +46,9 @@ public class QueryProcessorTest {
         assertThat(queryProcessor.process("which of the following numbers are primes: 2, 3, 4"), containsString("2, 3"));
     }
 
+    @Test
+    public void theresaMayQuery() throws Exception {
+        assertThat(queryProcessor.process("which year was Theresa May first elected as the Prime Minister of Great Britain"), is("2016"));
+    }
+
 }

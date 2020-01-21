@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.function.BiFunction;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class QueryProcessor {
@@ -64,6 +63,9 @@ public class QueryProcessor {
             return "Yellow";
         }
 
+        if (query.toLowerCase().contains("theresa may")) {
+            return "2016";
+        }
 
 
         return "";
