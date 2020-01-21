@@ -74,7 +74,7 @@ public class QueryProcessor {
         }
 
 
-        if (query.toLowerCase().contains("who played James Bond in the film Dr No")) {
+        if (query.contains("who played James Bond in the film Dr No")) {
             return "Sean Connery";
         }
 
