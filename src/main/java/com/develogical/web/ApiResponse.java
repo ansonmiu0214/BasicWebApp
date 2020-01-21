@@ -17,4 +17,12 @@ public class ApiResponse {
         PrintWriter writer = resp.getWriter();
         writer.println(answer);
     }
+
+    public void bad(HttpServletResponse resp) throws IOException {
+        resp.setStatus(400);
+        PrintWriter writer = resp.getWriter();
+        writer.println(answer);
+    }
+
+
 }

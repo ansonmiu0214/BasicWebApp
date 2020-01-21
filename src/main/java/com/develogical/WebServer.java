@@ -34,7 +34,12 @@ public class WebServer {
       if (query == null) {
         new IndexPage().writeTo(resp);
       } else {
-        new ResultsPage(query, new QueryProcessor().process(query)).writeTo(resp);
+        try {
+          new ResultsPage(query, new QueryProcessor().process(query)).writeTo(resp);
+        } catch (Exception e) {
+          // do nothing
+        }
+
       }
     }
   }
@@ -43,7 +48,12 @@ public class WebServer {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       String query = req.getParameter("q");
-      new ApiResponse(new QueryProcessor().process(query)).writeTo(resp);
+      try {
+        new ApiResponse(new QueryProcessor().process(query)).writeTo(resp);
+      } catch (Exception e) {
+        new ApiResponse(e.getMessage()).bad(resp);
+      }
+
     }
   }
 

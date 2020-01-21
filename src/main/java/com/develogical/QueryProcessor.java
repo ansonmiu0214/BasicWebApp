@@ -11,7 +11,11 @@ import java.util.stream.Collectors;
 
 public class QueryProcessor {
 
-    public String process(String query) {
+    public String process(String query) throws Exception {
+        if (query.toLowerCase().contains("you asked for it")) {
+            throw new Exception();
+        }
+
         if (query.toLowerCase().contains("team name")) {
             return "Morning";
         }
