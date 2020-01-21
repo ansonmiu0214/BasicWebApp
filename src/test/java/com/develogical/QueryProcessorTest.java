@@ -32,6 +32,11 @@ public class QueryProcessorTest {
     }
 
     @Test
+    public void minusQuery() throws Exception {
+        assertThat(queryProcessor.process("hash: what is 18 minus 8"), is("10"));
+    }
+
+    @Test
     public void multiplyQuery() throws Exception {
         assertThat(queryProcessor.process("hash: what is 18 multiplied by 8"), is("144"));
     }
