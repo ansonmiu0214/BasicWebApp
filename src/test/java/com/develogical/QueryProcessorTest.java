@@ -86,4 +86,8 @@ public class QueryProcessorTest {
         assertThat(queryProcessor.process("which of the following numbers is both a square and a cube: 893, 875, 1, 169"), is("1"));
     }
 
+    @Test
+    public void powerQuery() throws Exception {
+        assertThat(queryProcessor.process("what is 19 to the power of 14"), is("7.990066857828841E17"));
+    }
 }

@@ -20,7 +20,7 @@ public class QueryProcessor {
             return "Morning";
         }
 
-        String patternString = ".*what is ([0-9]+) (plus|minus|multiplied by) ([0-9]+)$";
+        String patternString = ".*what is ([0-9]+) (plus|minus|multiplied by|to the power of) ([0-9]+)$";
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(query);
         if (matcher.matches()) {
@@ -28,12 +28,15 @@ public class QueryProcessor {
             String op = matcher.group(2);
             Integer second = Integer.parseInt(matcher.group(3));
 
-            BiFunction<Integer, Integer, Integer> func = op.equals("plus")
-                    ? (x, y) -> x + y
+            BiFunction<Integer, Integer, String> func =
+                op.equals("plus")
+                    ? (x, y) -> Integer.toString(x + y)
                     : op.equals("minus")
-                        ? (x, y) -> x - y
-                        : (x, y) -> x * y;
-            return Integer.toString(func.apply(first, second));
+                        ? (x, y) -> Integer.toString(x - y)
+                        : op.contains("power") ?
+                            (x, y) -> Double.toString(Math.pow(x, y))
+                            : (x, y) -> Integer.toString(x * y);
+            return func.apply(first, second);
         }
 
         patternString = ".*what is ([0-9]+) (plus|minus|multiplied by) ([0-9]+) (plus|minus|multiplied by) ([0-9]+)$";
