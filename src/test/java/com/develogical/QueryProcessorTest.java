@@ -66,4 +66,8 @@ public class QueryProcessorTest {
         assertThat(queryProcessor.process("which city is the Eiffel tower in"), is("Paris"));
     }
 
+    @Test
+    public void squareAndCubeQuery() {
+        assertThat(queryProcessor.process("which of the following numbers is both a square and a cube: 893, 875, 1, 169"), is("1"));
+    }
 }

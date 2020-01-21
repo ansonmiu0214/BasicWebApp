@@ -33,6 +33,21 @@ public class QueryProcessor {
             return Integer.toString(func.apply(first, second));
         }
 
+        if (query.contains("cube") && query.contains("square")) {
+            String numbers = query.substring(query.lastIndexOf(":") + 2);
+            List<Integer> nums = new ArrayList<>();
+            for (String s : numbers.split(", ")) {
+                nums.add(Integer.parseInt(s));
+            }
+            StringBuilder sb = new StringBuilder();
+            for (int num : nums) {
+                if (isSquare(num) && isCube(num)) {
+                    sb.append(num).append(", ");
+                }
+            }
+            String res = sb.toString();
+            return res.endsWith(", ") ? res.substring(0, res.lastIndexOf(",")) : res;
+        }
 
         if (query.toLowerCase().contains("shakespeare")) {
             return "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
@@ -104,5 +119,15 @@ public class QueryProcessor {
         } else {
             return false;
         }
+    }
+
+    public static boolean isSquare(int n) {
+        int x = (int) Math.sqrt(n);
+        return Math.pow(x,2) == n;
+    }
+
+    public static boolean isCube(int n) {
+        int x = (int) Math.round(Math.pow(n, 1.0 / 3.0));
+        return Math.pow(x, 3) == n;
     }
 }
