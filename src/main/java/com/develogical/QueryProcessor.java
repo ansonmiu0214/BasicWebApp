@@ -51,8 +51,21 @@ public class QueryProcessor {
             return "Yellow";
         }
 
+        if (query.contains("Fibonacci sequence")) {
+            String subString = query.substring(query.indexOf('e') + 1);
+            String index = subString.substring(1, subString.indexOf("th"));
+            return Integer.toString(fib(Integer.parseInt(index)));
+        }
 
+//        what%20is%20the%207th%20number%20in%20the%20Fibonacci%20sequence
 
         return "";
+    }
+
+    public static int fib(int n) {
+        if ((n == 0) || (n == 1))
+            return n;
+        else
+            return fib(n - 1) + fib(n - 2);
     }
 }

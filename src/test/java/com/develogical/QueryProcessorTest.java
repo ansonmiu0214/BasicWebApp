@@ -41,4 +41,9 @@ public class QueryProcessorTest {
         assertThat(queryProcessor.process("which of the following numbers is the largest: 140, 39"), containsString("140"));
     }
 
+    @Test
+    public void fibonacci() throws Exception {
+        assertThat(queryProcessor.process("what is the 7th number in the Fibonacci sequence"), containsString("13"));
+    }
+
 }
