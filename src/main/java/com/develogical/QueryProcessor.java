@@ -131,6 +131,10 @@ public class QueryProcessor {
             return "2020";
         }
 
+        if (query.toLowerCase().contains("prime minister")) {
+            return "Boris Johnson";
+        }
+
         return "";
     }
 
