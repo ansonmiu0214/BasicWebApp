@@ -27,7 +27,8 @@ public class QueryProcessorTest {
     }
 
     @Test
-    public void answersTeamName() throws Exception {
-        assertThat(queryProcessor.process("what is your team name"), containsString("Morning"));
+    public void additionQuery() throws Exception {
+        assertThat(queryProcessor.process("what is 2013 plus 2016"), containsString("4029"));
     }
+
 }
