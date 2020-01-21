@@ -16,7 +16,6 @@ public class QueryProcessor {
             return "Morning";
         }
 
-
         String patternString = ".*what is ([0-9]+) (plus|minus|multiplied by) ([0-9]+)$";
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(query);
@@ -31,6 +30,30 @@ public class QueryProcessor {
                         ? (x, y) -> x - y
                         : (x, y) -> x * y;
             return Integer.toString(func.apply(first, second));
+        }
+
+        patternString = ".*what is ([0-9]+) (plus|minus|multiplied by) ([0-9]+) (plus|minus|multiplied by) ([0-9]+)$";
+        pattern = Pattern.compile(patternString);
+        matcher = pattern.matcher(query);
+        if (matcher.matches()) {
+            Integer first = Integer.parseInt(matcher.group(1));
+            String op1 = matcher.group(2);
+            Integer second = Integer.parseInt(matcher.group(3));
+            String op2 = matcher.group(4);
+            Integer third = Integer.parseInt(matcher.group(5));
+
+            BiFunction<Integer, Integer, Integer> func1 = op1.equals("plus")
+                    ? (x, y) -> x + y
+                    : op1.equals("minus")
+                    ? (x, y) -> x - y
+                    : (x, y) -> x * y;
+            BiFunction<Integer, Integer, Integer> func2 = op2.equals("plus")
+                    ? (x, y) -> x + y
+                    : op2.equals("minus")
+                    ? (x, y) -> x - y
+                    : (x, y) -> x * y;
+
+            return Integer.toString(func2.apply(func1.apply(first, second), third));
         }
 
         if (query.contains("cube") && query.contains("square")) {

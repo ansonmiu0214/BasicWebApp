@@ -42,6 +42,11 @@ public class QueryProcessorTest {
     }
 
     @Test
+    public void compoundMathQuery() throws Exception {
+        assertThat(queryProcessor.process("hash: what is 18 minus 8 plus 3"), is("13"));
+    }
+
+    @Test
     public void largestQuery() throws Exception {
         assertThat(queryProcessor.process("which of the following numbers is the largest: 140, 39"), containsString("140"));
     }
