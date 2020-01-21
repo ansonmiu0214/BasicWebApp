@@ -82,7 +82,11 @@ public class QueryProcessor {
             String numbers = query.substring(query.lastIndexOf(":") + 2);
             List<Integer> numberList = new ArrayList<>();
             for (String s : numbers.split(", ")) {
-                numberList.add(Integer.parseInt(s));
+                try {
+                    numberList.add(Integer.parseInt(s));
+                } catch (Exception e) {
+                    return "";
+                }
             }
             return Integer.toString(Collections.max(numberList));
         }
@@ -108,7 +112,7 @@ public class QueryProcessor {
         if (query.contains("Fibonacci sequence")) {
             String subString = query.substring(query.indexOf('e') + 1);
             String index = subString.substring(1, subString.indexOf("th"));
-            return Integer.toString(fib(Integer.parseInt(index) - 1));
+            return Integer.toString(fib(Integer.parseInt(index)));
         }
 
         if (query.toLowerCase().contains("theresa may")) {
