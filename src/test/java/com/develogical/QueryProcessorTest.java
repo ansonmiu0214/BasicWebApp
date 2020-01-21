@@ -28,7 +28,7 @@ public class QueryProcessorTest {
 
     @Test
     public void additionQuery() throws Exception {
-        assertThat(queryProcessor.process("what is 2013 plus 2016"), containsString("4029"));
+        assertThat(queryProcessor.process("hash: what is 18 plus 8"), is("26"));
     }
 
 }
