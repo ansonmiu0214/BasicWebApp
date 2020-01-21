@@ -43,7 +43,7 @@ public class QueryProcessorTest {
 
     @Test
     public void fibonacci() throws Exception {
-        assertThat(queryProcessor.process("what is the 7th number in the Fibonacci sequence"), containsString("13"));
+        assertThat(queryProcessor.process("what is the 8th number in the Fibonacci sequence"), containsString("13"));
     }
 
     public void primeQuery() throws Exception {
