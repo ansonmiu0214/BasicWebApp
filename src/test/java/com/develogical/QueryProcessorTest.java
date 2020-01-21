@@ -41,4 +41,9 @@ public class QueryProcessorTest {
         assertThat(queryProcessor.process("which of the following numbers is the largest: 140, 39"), containsString("140"));
     }
 
+    @Test
+    public void primeQuery() throws Exception {
+        assertThat(queryProcessor.process("which of the following numbers are primes: 2, 3, 4"), containsString("2, 3"));
+    }
+
 }

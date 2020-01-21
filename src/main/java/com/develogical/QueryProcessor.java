@@ -1,11 +1,14 @@
 package com.develogical;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class QueryProcessor {
 
@@ -42,6 +45,30 @@ public class QueryProcessor {
             }
             return Integer.toString(Collections.max(numberList));
         }
+
+        if (query.toLowerCase().contains("which of the following numbers are primes:")) {
+            String numbers = query.substring(query.lastIndexOf(":") + 2);
+            return Arrays.stream(numbers.split(", "))
+                    .map(Integer::parseInt)
+                    .filter(QueryProcessor::isPrime)
+                    .map(x -> Integer.toString(x))
+                    .collect(Collectors.joining(", "));
+        }
+
         return "";
+    }
+
+    private static boolean isPrime(int num) {
+        if (num == 0 || num == 1) {
+            return false;
+        }
+        if (num == 2 || num == 3) {
+            return true;
+        }
+        if ((num * num - 1) % 24 == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
