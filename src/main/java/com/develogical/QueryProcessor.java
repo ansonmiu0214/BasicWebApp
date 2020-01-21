@@ -1,11 +1,13 @@
 package com.develogical;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class QueryProcessor {
 
@@ -43,6 +45,16 @@ public class QueryProcessor {
             return Integer.toString(Collections.max(numberList));
         }
 
+        if (query.toLowerCase().contains("which of the following numbers are primes:")) {
+            String numbers = query.substring(query.lastIndexOf(":") + 2);
+            return Arrays.stream(numbers.split(", "))
+                    .map(Integer::parseInt)
+                    .filter(QueryProcessor::isPrime)
+                    .map(x -> Integer.toString(x))
+                    .collect(Collectors.joining(", "));
+        }
+
+
         if (query.toLowerCase().contains("who played James Bond in the film Dr No")) {
             return "Sean Connery";
         }
@@ -57,6 +69,10 @@ public class QueryProcessor {
             return Integer.toString(fib(Integer.parseInt(index)));
         }
 
+        if (query.toLowerCase().contains("theresa may")) {
+            return "2016";
+        }
+
 //        what%20is%20the%207th%20number%20in%20the%20Fibonacci%20sequence
 
         return "";
@@ -67,5 +83,20 @@ public class QueryProcessor {
             return n;
         else
             return fib(n - 1) + fib(n - 2);
+
+    }
+
+    private static boolean isPrime(int num) {
+        if (num == 0 || num == 1) {
+            return false;
+        }
+        if (num == 2 || num == 3) {
+            return true;
+        }
+        if ((num * num - 1) % 24 == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
