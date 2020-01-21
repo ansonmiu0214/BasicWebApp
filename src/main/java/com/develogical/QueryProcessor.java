@@ -77,7 +77,9 @@ public class QueryProcessor {
             return "2016";
         }
 
-//        what%20is%20the%207th%20number%20in%20the%20Fibonacci%20sequence
+        if (query.toLowerCase().contains("eiffel")) {
+            return "Paris";
+        }
 
         return "";
     }
