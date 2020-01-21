@@ -14,7 +14,7 @@ public class QueryProcessor {
         }
 
 
-        String patternString = "what is ([0-9]+) plus ([0-9]+)";
+        String patternString = ".*what is ([0-9]+) plus ([0-9]+)$";
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(query);
         if (matcher.matches()) {
