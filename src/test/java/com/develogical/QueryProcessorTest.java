@@ -32,6 +32,11 @@ public class QueryProcessorTest {
     }
 
     @Test
+    public void minusQuery() throws Exception {
+        assertThat(queryProcessor.process("hash: what is 18 minus 8"), is("10"));
+    }
+
+    @Test
     public void multiplyQuery() throws Exception {
         assertThat(queryProcessor.process("hash: what is 18 multiplied by 8"), is("144"));
     }
@@ -46,6 +51,7 @@ public class QueryProcessorTest {
         assertThat(queryProcessor.process("what is the 8th number in the Fibonacci sequence"), containsString("13"));
     }
 
+    @Test
     public void primeQuery() throws Exception {
         assertThat(queryProcessor.process("which of the following numbers are primes: 2, 3, 4"), containsString("2, 3"));
     }
@@ -53,6 +59,11 @@ public class QueryProcessorTest {
     @Test
     public void theresaMayQuery() throws Exception {
         assertThat(queryProcessor.process("which year was Theresa May first elected as the Prime Minister of Great Britain"), is("2016"));
+    }
+
+    @Test
+    public void eiffelTowerQuery() throws Exception {
+        assertThat(queryProcessor.process("which city is the Eiffel tower in"), is("Paris"));
     }
 
 }
