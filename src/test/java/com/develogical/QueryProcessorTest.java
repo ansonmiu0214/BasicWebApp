@@ -32,6 +32,11 @@ public class QueryProcessorTest {
     }
 
     @Test
+    public void multiplyQuery() throws Exception {
+        assertThat(queryProcessor.process("hash: what is 18 multiplied by 8"), is("144"));
+    }
+
+    @Test
     public void largestQuery() throws Exception {
         assertThat(queryProcessor.process("which of the following numbers is the largest: 140, 39"), containsString("140"));
     }
