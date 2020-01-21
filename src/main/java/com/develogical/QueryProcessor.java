@@ -59,7 +59,11 @@ public class QueryProcessor {
             String numbers = query.substring(query.lastIndexOf(":") + 2);
             List<Integer> numberList = new ArrayList<>();
             for (String s : numbers.split(", ")) {
-                numberList.add(Integer.parseInt(s));
+                try {
+                    numberList.add(Integer.parseInt(s));
+                } catch (Exception e) {
+                    return "";
+                }
             }
             return Integer.toString(Collections.max(numberList));
         }

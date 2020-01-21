@@ -47,6 +47,11 @@ public class QueryProcessorTest {
     }
 
     @Test
+    public void badLargestQuery() throws Exception {
+        assertThat(queryProcessor.process("which of the following numbers is the largest:totallynota,badstringlmao"), is(""));
+    }
+
+    @Test
     public void fibonacci() throws Exception {
         assertThat(queryProcessor.process("what is the 8th number in the Fibonacci sequence"), containsString("13"));
     }
